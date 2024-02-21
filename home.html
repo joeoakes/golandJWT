@@ -9,7 +9,6 @@
 
 <script>
 
-
 // Function to parse and decode a JWT token
     function parseJWT(token) {
         const base64Url = token.split('.')[1];
@@ -20,7 +19,6 @@
 
         return JSON.parse(jsonPayload);
     }
-
     // Function to check if a JWT token is expired
     function isTokenExpired(token) {
         const decodedToken = parseJWT(token);
@@ -31,7 +29,6 @@
         const expirationDate = new Date(decodedToken.exp * 1000);
         return expirationDate <= new Date();
     }
-
     function getCookie(cookieName) {
         const name = cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
@@ -47,14 +44,12 @@
         }
         return "";
     }
-
     // Function to encrypt cookie data
     function encryptCookie(cookieData, secretKey) {
         // Encrypt the data using AES encryption and the secret key
         const encryptedCookie = CryptoJS.AES.encrypt(cookieData, secretKey).toString();
         return encryptedCookie;
     }
-
     // Function to decrypt cookie data
     function decryptCookie(encryptedCookie, secretKey) {
         // Decrypt the data using AES decryption and the secret key
@@ -74,11 +69,8 @@
 
     const decodedToken = parseJWT(jwtToken);
     console.log('Decoded Token:', decodedToken);
-
     const isExpired = isTokenExpired(jwtToken);
     console.log('Is Token Expired?', isExpired);
-
 </script>
-
 </body>
 </html>
