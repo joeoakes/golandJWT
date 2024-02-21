@@ -58,11 +58,11 @@
     // Example usage
     const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDg1NjU3ODMsInVzZXJuYW1lIjoiSm9obkRvZSJ9.P67vGWcBJ5uQIYU0cBa44Ev1r1BZ99fCEut1bwpktB0';
     document.cookie = "jwtToken=" + jwtToken + "; secure; HttpOnly";
-    const jwtToken = getCookie("jwtToken");
+    const jwtToken2 = getCookie("jwtToken");
     const encryptionKey = 'yourEncryptionKey123';
     const encryptedCookieData = encryptCookieData(jwtToken, encryptionKey);
     console.log('Encrypted Cookie Data:', encryptedCookieData);
-    console.log("JWT Token:", jwtToken);
+    console.log("JWT Token:", jwtToken2);
 
     const decodedToken = parseJWT(jwtToken);
     console.log('Decoded Token:', decodedToken);
