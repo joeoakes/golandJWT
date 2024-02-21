@@ -7,8 +7,9 @@
 <body>
 
 <script>
-    const CryptoJS = require('crypto-js');
-    // Function to parse and decode a JWT token
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+// Function to parse and decode a JWT token
     function parseJWT(token) {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
