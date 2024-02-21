@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // Function to parse and decode a JWT token
+    function parseJWT(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    }
+
+    // Function to check if a JWT token is expired
+    function isTokenExpired(token) {
+        const decodedToken = parseJWT(token);
+        if (!decodedToken.exp) {
+            return false;
+        }
+
+        const expirationDate = new Date(decodedToken.exp * 1000);
+        return expirationDate <= new Date();
+    }
+    // Example usage
+    const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDg1NjU3ODMsInVzZXJuYW1lIjoiSm9obkRvZSJ9.P67vGWcBJ5uQIYU0cBa44Ev1r1BZ99fCEut1bwpktB0';
+    const decodedToken = parseJWT(jwtToken);
+    console.log('Decoded Token:', decodedToken);
+
+    const isExpired = isTokenExpired(jwtToken);
+    console.log('Is Token Expired?', isExpired);
+
+</script>
+
+</body>
+</html>
