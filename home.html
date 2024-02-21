@@ -28,9 +28,28 @@
         const expirationDate = new Date(decodedToken.exp * 1000);
         return expirationDate <= new Date();
     }
+
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return "";
+    }
+
     // Example usage
     const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDg1NjU3ODMsInVzZXJuYW1lIjoiSm9obkRvZSJ9.P67vGWcBJ5uQIYU0cBa44Ev1r1BZ99fCEut1bwpktB0';
     document.cookie = "jwtToken=" + jwtToken + "; secure; HttpOnly";
+    const jwtToken = getCookie("jwtToken");
+    console.log("JWT Token:", jwtToken);
     const decodedToken = parseJWT(jwtToken);
     console.log('Decoded Token:', decodedToken);
 
