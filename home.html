@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
 
 <script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
 
 // Function to parse and decode a JWT token
     function parseJWT(token) {
@@ -49,17 +50,17 @@
 
     // Function to encrypt cookie data
     function encryptCookie(cookieData, secretKey) {
-    // Encrypt the data using AES encryption and the secret key
-    const encryptedCookie = CryptoJS.AES.encrypt(cookieData, secretKey).toString();
-    return encryptedCookie;
+        // Encrypt the data using AES encryption and the secret key
+        const encryptedCookie = CryptoJS.AES.encrypt(cookieData, secretKey).toString();
+        return encryptedCookie;
     }
 
     // Function to decrypt cookie data
     function decryptCookie(encryptedCookie, secretKey) {
-    // Decrypt the data using AES decryption and the secret key
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedCookie, secretKey);
-    const decryptedCookie = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedCookie;
+        // Decrypt the data using AES decryption and the secret key
+        const decryptedBytes = CryptoJS.AES.decrypt(encryptedCookie, secretKey);
+        const decryptedCookie = decryptedBytes.toString(CryptoJS.enc.Utf8);
+        return decryptedCookie;
     }
 
     // Example usage
